@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.kevin.jetpack.lifecycle.compose.ALifecycleActivity
 import com.kevin.jetpack.lifecycle.compose.BLifecycleService
+import com.kevin.viewmodel.AActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,7 +14,8 @@ class MainActivity : AppCompatActivity() {
         getInfo(name = "Kevin", address = "China")
         getInfo("Tony", "USA")
         //toLifecycleTest()
-        toLifecycleService()
+        //toLifecycleService()
+        toAViewModel()
     }
 
     private fun getInfo(name: String, address: String): String {
@@ -28,6 +30,14 @@ class MainActivity : AppCompatActivity() {
     private fun toLifecycleService() {
         val intent = Intent(this, BLifecycleService::class.java)
         startService(intent)
+    }
+
+    private fun toAViewModel() {
+        val intent = Intent(this, AActivity::class.java)
+        startActivity(intent)
+    }
+    fun toActivity(){
+
     }
 
 }
