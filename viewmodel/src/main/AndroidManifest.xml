@@ -3,7 +3,8 @@
     package="com.kevin.viewmodel">
 
     <application>
-        <activity android:name=".AActivity"></activity>
+        <activity android:name=".BViewModelLiveDataActivity" />
+        <activity android:name=".AViewModelActivity" />
     </application>
 
 </manifest>

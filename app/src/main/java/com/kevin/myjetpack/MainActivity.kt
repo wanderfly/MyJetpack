@@ -3,41 +3,56 @@ package com.kevin.myjetpack
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.annotation.IdRes
 import com.kevin.jetpack.lifecycle.compose.ALifecycleActivity
 import com.kevin.jetpack.lifecycle.compose.BLifecycleService
-import com.kevin.viewmodel.AActivity
+import com.kevin.viewmodel.AViewModelActivity
+import com.kevin.viewmodel.BViewModelLiveDataActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
+    companion object {
+        private const val TAG = "MainActivity"
+        private const val DEBUG = true
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         getInfo(name = "Kevin", address = "China")
         getInfo("Tony", "USA")
-        //toLifecycleTest()
-        //toLifecycleService()
-        toAViewModel()
+        findViewAndClick(
+            R.id.btn_lifecycle_test,
+            R.id.btn_lifecycle_service,
+            R.id.btn_aviewmodel,
+            R.id.btn_b_view_model_live_data
+        )
     }
 
     private fun getInfo(name: String, address: String): String {
         return "$name:$address"
     }
 
-    private fun toLifecycleTest() {
-        val intent = Intent(this, ALifecycleActivity::class.java)
-        startActivity(intent)
+    private fun toActivity(cls: Class<*>) {
+        startActivity(Intent(this, cls))
     }
 
-    private fun toLifecycleService() {
-        val intent = Intent(this, BLifecycleService::class.java)
-        startService(intent)
+    private fun toService(cls: Class<*>) {
+        startService(Intent(this, cls))
     }
 
-    private fun toAViewModel() {
-        val intent = Intent(this, AActivity::class.java)
-        startActivity(intent)
-    }
-    fun toActivity(){
-
+    private fun findViewAndClick(@IdRes vararg ids: Int) {
+        for (id in ids) {
+            findViewById<View>(id).setOnClickListener(this)
+        }
     }
 
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.btn_lifecycle_test -> toActivity(ALifecycleActivity::class.java)
+            R.id.btn_lifecycle_service -> toService(BLifecycleService::class.java)
+            R.id.btn_aviewmodel -> toActivity(AViewModelActivity::class.java)
+            R.id.btn_b_view_model_live_data -> toActivity(BViewModelLiveDataActivity::class.java)
+        }
+    }
 }

@@ -7,7 +7,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 
-class AActivity : AppCompatActivity(), View.OnClickListener {
+class AViewModelActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var mTvNumber: TextView
     lateinit var mAViewMode: AViewMode
     override fun onCreate(savedInstanceState: Bundle?) {
