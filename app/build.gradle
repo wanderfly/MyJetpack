@@ -39,17 +39,17 @@ android {
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.3.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
     implementation project(path: ':lifecycle')
     implementation project(path: ':viewmodel')
     testImplementation 'junit:junit:'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    implementation 'androidx.compose.ui:ui:1.0.0-beta05'
+    implementation 'androidx.compose.ui:ui:1.0.0-beta09'
     // Tooling support (Previews, etc.)
     implementation 'androidx.compose.ui:ui-tooling:1.0.0-beta05'
     // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
@@ -62,7 +62,7 @@ dependencies {
     // Integration with activities
     implementation 'androidx.activity:activity-compose:1.3.0-alpha07'
     // Integration with ViewModels
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha04'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07'
     // Integration with observables
     implementation 'androidx.compose.runtime:runtime-livedata:1.0.0-beta05'
     implementation 'androidx.compose.runtime:runtime-rxjava2:1.0.0-beta05'
