@@ -2,3 +2,4 @@ rootProject.name = "MyJetpack"
 include ':app'
 include ':lifecycle'
 include ':viewmodel'
+include ':databinding'

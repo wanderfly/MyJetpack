@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.kevin.databinding">
+
+    <application>
+        <activity
+            android:name=".BDataFragActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ADataBindingActivity"
+            android:exported="true" />
+    </application>
+
+</manifest>

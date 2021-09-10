@@ -23,6 +23,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -33,6 +34,10 @@ android {
 
     composeOptions {
         kotlinCompilerExtensionVersion '1.0.0-beta01'
+    }
+
+    buildFeatures {
+        dataBinding = true
     }
 }
 
@@ -45,6 +50,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
     implementation project(path: ':lifecycle')
     implementation project(path: ':viewmodel')
+    implementation project(path: ':databinding')
     testImplementation 'junit:junit:'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
