@@ -11,7 +11,7 @@ class BDataFragActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_b_data_frag)
         mFragManager = supportFragmentManager
-        //addFrag(BlankFragment())
+        addFrag(BlankFragment())
         //addFrag(BlankFragment.newInstance("",""))
     }
 

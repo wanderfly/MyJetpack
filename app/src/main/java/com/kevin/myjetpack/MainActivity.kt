@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.IdRes
+import com.kevin.coroutine.CoroutineActivity
 import com.kevin.databinding.ADataBindingActivity
 import com.kevin.databinding.BDataFragActivity
 import com.kevin.jetpack.lifecycle.compose.ALifecycleActivity
@@ -29,7 +30,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_aviewmodel,
             R.id.btn_b_view_model_live_data,
             R.id.btn_b_data_binding,
-            R.id.btn_frag_data_binding
+            R.id.btn_frag_data_binding,
+            R.id.btn_coroutine
         )
     }
 
@@ -59,6 +61,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_b_view_model_live_data -> toActivity(BViewModelLiveDataActivity::class.java)
             R.id.btn_b_data_binding -> toActivity(ADataBindingActivity::class.java)
             R.id.btn_frag_data_binding -> toActivity(BDataFragActivity::class.java)
+            R.id.btn_coroutine -> toActivity(CoroutineActivity::class.java)
         }
     }
 }
