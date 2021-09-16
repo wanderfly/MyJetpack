@@ -3,7 +3,9 @@ package com.kevin.coroutine
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import kotlinx.coroutines.*
+import java.lang.Exception
 
 class CoroutineActivity : AppCompatActivity() {
     companion object {
@@ -16,6 +18,9 @@ class CoroutineActivity : AppCompatActivity() {
         test()
 
         //runBlocking {  }
+
+        val number = Runtime.getRuntime().availableProcessors()
+        Log.e(TAG, "onCreate: $number")
     }
 
     private fun test() {
@@ -28,6 +33,7 @@ class CoroutineActivity : AppCompatActivity() {
         //    val nice: String = ""
         //    Log.e(TAG, "getData: $nice")
         //}
+
         Log.e(TAG, "getData: start:" + System.currentTimeMillis())
         delay(2000)
         Log.e(TAG, "getData: end:" + System.currentTimeMillis())
@@ -39,4 +45,16 @@ class CoroutineActivity : AppCompatActivity() {
             "key"
         }
     }
+
+
+    private suspend fun getTime(): String {
+        try {
+
+        } catch (e: Exception) {
+
+        }
+        return ""
+    }
+
+    private suspend fun getDoc(url: String) = withContext(Dispatchers.IO) { "" }
 }
