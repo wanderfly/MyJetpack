@@ -3,11 +3,13 @@ package com.kevin.myjetpack
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.annotation.IdRes
 import com.kevin.coroutine.CoroutineActivity
 import com.kevin.databinding.ADataBindingActivity
 import com.kevin.databinding.BDataFragActivity
+import com.kevin.databinding.User
 import com.kevin.jetpack.lifecycle.compose.ALifecycleActivity
 import com.kevin.jetpack.lifecycle.compose.BLifecycleService
 import com.kevin.viewmodel.AViewModelActivity
@@ -33,6 +35,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_frag_data_binding,
             R.id.btn_coroutine
         )
+
+        val user = User("Tom", 25).apply {
+            name = "Kevin-Tom"
+            age = 33
+        }
+        Log.e(TAG, "onCreate: $user")
+
+        val boolean: Boolean? = null
+        Log.e(TAG, "onCreate: $boolean")
     }
 
     private fun getInfo(name: String, address: String): String {

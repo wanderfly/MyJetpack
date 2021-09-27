@@ -19,4 +19,8 @@ public class Demo {
     public <T extends TextView> T getView(Context context) {
         return null;
     }
+
+    public <T> T getView(T nice) {
+        return nice;
+    }
 }
