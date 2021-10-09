@@ -15,7 +15,7 @@ class BViewModelLiveDataActivity : AppCompatActivity() {
     private lateinit var mBViewModelLiveData: BViewModelLiveData
 
     //通过该方式初始化
-    //private val mBViewModelLive: BViewModelLiveData by viewModels()
+    private val mBViewModelLive: BViewModelLiveData by viewModels()
     private lateinit var mTvData: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

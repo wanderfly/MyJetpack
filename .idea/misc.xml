@@ -8,8 +8,11 @@
         <entry key="..\:/android/androidsample/MyJetpack/coroutine/src/main/res/layout/activity_coroutine.xml" value="0.36614583333333334" />
         <entry key="..\:/android/androidsample/MyJetpack/databinding/src/main/res/layout/activity_a_data_binding.xml" value="0.3515625" />
         <entry key="..\:/android/androidsample/MyJetpack/databinding/src/main/res/layout/activity_b_data_frag.xml" value="0.36614583333333334" />
+        <entry key="..\:/android/androidsample/MyJetpack/databinding/src/main/res/layout/activity_c_two_way_binding.xml" value="0.3515625" />
         <entry key="..\:/android/androidsample/MyJetpack/databinding/src/main/res/layout/activity_data_binding.xml" value="0.3515625" />
         <entry key="..\:/android/androidsample/MyJetpack/databinding/src/main/res/layout/fragment_blank.xml" value="0.36614583333333334" />
+        <entry key="..\:/android/androidsample/MyJetpack/databinding/src/main/res/layout/fragment_blank2.xml" value="0.37864583333333335" />
+        <entry key="..\:/android/androidsample/MyJetpack/databinding/src/main/res/layout/test.xml" value="0.36614583333333334" />
         <entry key="..\:/android/androidsample/MyJetpack/lifecycle/src/main/res/layout/activity_kevin_lifecycle_activiy.xml" value="0.24682971014492755" />
         <entry key="..\:/android/androidsample/MyJetpack/viewmodel/src/main/res/layout/activity_aactivity.xml" value="0.24909420289855072" />
       </map>

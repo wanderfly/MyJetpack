@@ -9,6 +9,7 @@ import androidx.annotation.IdRes
 import com.kevin.coroutine.CoroutineActivity
 import com.kevin.databinding.ADataBindingActivity
 import com.kevin.databinding.BDataFragActivity
+import com.kevin.databinding.CTwoWayBindingActivity
 import com.kevin.databinding.User
 import com.kevin.jetpack.lifecycle.compose.ALifecycleActivity
 import com.kevin.jetpack.lifecycle.compose.BLifecycleService
@@ -33,10 +34,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_b_view_model_live_data,
             R.id.btn_b_data_binding,
             R.id.btn_frag_data_binding,
+            R.id.btn_two_way_binding,
             R.id.btn_coroutine
         )
 
-        val user = User("Tom", 25).apply {
+        val user = User("Tom", 25, false).apply {
             name = "Kevin-Tom"
             age = 33
         }
@@ -72,6 +74,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_b_view_model_live_data -> toActivity(BViewModelLiveDataActivity::class.java)
             R.id.btn_b_data_binding -> toActivity(ADataBindingActivity::class.java)
             R.id.btn_frag_data_binding -> toActivity(BDataFragActivity::class.java)
+            R.id.btn_two_way_binding -> toActivity(CTwoWayBindingActivity::class.java)
             R.id.btn_coroutine -> toActivity(CoroutineActivity::class.java)
         }
     }

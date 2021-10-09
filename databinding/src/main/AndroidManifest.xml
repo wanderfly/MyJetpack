@@ -4,6 +4,9 @@
 
     <application>
         <activity
+            android:name=".CTwoWayBindingActivity"
+            android:exported="true" />
+        <activity
             android:name=".BDataFragActivity"
             android:exported="true" />
         <activity
