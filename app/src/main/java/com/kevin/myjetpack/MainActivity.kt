@@ -1,11 +1,15 @@
 package com.kevin.myjetpack
 
+import android.accounts.AccountManager.get
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.annotation.IdRes
+import androidx.annotation.RequiresApi
+import androidx.compose.ui.text.capitalize
 import com.kevin.coroutine.CoroutineActivity
 import com.kevin.databinding.ADataBindingActivity
 import com.kevin.databinding.BDataFragActivity
@@ -15,12 +19,16 @@ import com.kevin.jetpack.lifecycle.compose.ALifecycleActivity
 import com.kevin.jetpack.lifecycle.compose.BLifecycleService
 import com.kevin.viewmodel.AViewModelActivity
 import com.kevin.viewmodel.BViewModelLiveDataActivity
+import java.io.File
+import javax.security.auth.login.LoginException
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     companion object {
         private const val TAG = "MainActivity"
         private const val DEBUG = true
     }
+
+    val runner: Runner by lazy { Runner("Tony") }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +54,34 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         val boolean: Boolean? = null
         Log.e(TAG, "onCreate: $boolean")
+
+        Demo.`is`()
+        showOnBoard("牙膏", ::getDiscountWords)
+        showOnBoard("电饭锅") { name: String, age: Int ->
+            "姓名:${name} 年龄:${age}"
+        }
+        Log.e(TAG, "onCreate: ${getWords("空心菜")}")
+
+        val str1 = "Jason"
+        val str2 = "Jason"
+        //val str2 = "jason".capitalize()
+        Log.e(TAG, "onCreate: 内容否相等:${str1 == str2} 引用是否相等:${str1 === str2}") //后面的引用值比较也相等(字符串常量池)
+
+        val number1 = "8.98".toIntOrNull()
+
+        val result: String? = File("").takeIf { it.exists() && it.canRead() }?.readText()
+        Log.e(TAG, "onCreate: $result")
+
+        Runner("Kevin")
+
+        testMutableList()
+        testMutableMap()
+        testDeconstruct()
+        testDataPlus()
+
+        Log.e(TAG, "onCreate: $animals")
+        Log.e(TAG, "onCreate: $babies")
+
     }
 
     private fun getInfo(name: String, address: String): String {
@@ -78,4 +114,112 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_coroutine -> toActivity(CoroutineActivity::class.java)
         }
     }
+
+    private fun getDiscountWords(goodsName: String, hour: Int): String {
+        val currentYear = 2027
+        return "${currentYear}年，双11${goodsName}促销倒计时:$hour 小时"
+    }
+
+    private fun showOnBoard(goodsName: String, getDiscountWords: (String, Int) -> String) {
+        val hour: Int = (1..24).shuffled().last()
+        Log.e(TAG, "showOnBoard: ${getDiscountWords(goodsName, hour)}")
+    }
+
+    private fun configDiscountWords(): (String) -> String {
+        val currentYear = 2027
+        var hour: Int = (1..24).shuffled().last()
+        return { goodName: String ->
+            hour += 20
+            "${currentYear}年，双11${goodName}促销倒计时: $hour 小时"
+        }
+    }
+
+    private val getWords = configDiscountWords()
+
+    /**
+     * 可变列表
+     **/
+    private fun testMutableList() {
+        val mutableList: MutableList<String> = mutableListOf("Jason", "Jack", "Jacky")
+        mutableList += "Jimmy" //运算符重载
+        Log.e(TAG, "testMutableList: $mutableList")
+
+        mutableList -= "Jason"
+        Log.e(TAG, "testMutableList: $mutableList")
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            mutableList.removeIf {
+                //it.contains("Jack")
+                it == "Jack"
+            }
+            Log.e(TAG, "testMutableList: $mutableList")
+        }
+    }
+
+    private fun testMutableMap() {
+        val mutableMap: MutableMap<String, Int> =
+            mutableMapOf("Jack" to 20, "Jason" to 30, "Jacky" to 40)
+
+        mutableMap += "Jimmy" to 30
+        Log.e(TAG, "testMutableMap: $mutableMap")
+        mutableMap["Jimmy"] = 31
+        Log.e(TAG, "testMutableMap: $mutableMap")
+    }
+
+    /**
+     * 解构
+     **/
+    private fun testDeconstruct() {
+        val mutableList: MutableList<String> = mutableListOf("Jack", "Kevin", "Tony")
+        val (origin: String, dest: String, proxy: String) = mutableList
+        //val (origin: String, _: String, proxy: String) = mutableList
+        Log.e(TAG, "testDeconstruct: $origin $dest $proxy")
+    }
+
+    private fun testDataPlus() {
+        val c1 = Coordinate(10, 20)
+        val c2 = Coordinate(23, 52)
+        Log.e(TAG, "testDataPlus: ${c1 + c2}")
+    }
+
+    class Player {
+        //Kotlin会默认为属性生成setter、getter方法，可以通过下面方式更改
+        var name: String = "Jack"
+            get() = field.capitalize()
+            set(value) {
+                field = value.trim()
+            }
+        val rolledValue: Int get() = (1..6).shuffled().first()
+    }
+
+    class Runner(name: String, var age: Int, var isNormal: Boolean) {
+        constructor(name: String) : this(name, age = 10, isNormal = false)
+    }
+
+    data class Coordinate(var x: Int, var y: Int) {
+        operator fun plus(other: Coordinate) = Coordinate(x + other.x, y + other.y)
+    }
+
+    interface Consumer<in T> {
+        fun consume(item: T)
+    }
+    //out 子类泛型对象可以赋值给父类泛型对象
+    //in  父类泛型对象可以赋值给子类泛型对象
+
+    //fun <T> T.easyPrint(): T {
+    //    Log.e(TAG, "easyPrint: $this")
+    //    return this
+    //}
+    fun <T> T.easyPrint() = print(this)
+
+    //扩展函数里面自带了this的隐士调用
+    fun String.addExt() = "!".repeat(this.count())
+    //fun String.addExt() = "!".repeat(count())
+
+    private val animals: List<String> = listOf("zebra", "giraffe", "elephant", "rat")
+    val babies: List<String> = animals
+        .map { animal -> "a baby $animal" }
+        .map { baby -> "$baby,with the cutest little tail ever !" }
+
+
 }
