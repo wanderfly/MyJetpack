@@ -33,7 +33,7 @@ class ADataBindingActivity : AppCompatActivity() {
         //setContentView(R.layout.activity_a_data_binding) //Todo 此时不需要调用该方法
 
         //Todo setContentView 方案二:通过ViewBinding方式实例化(其内部的实现还是调用DataBinding工具类)
-        binding = ActivityADataBindingBinding.inflate(layoutInflater)
+        //binding = ActivityADataBindingBinding.inflate(layoutInflater)
         //binding.user = User(name = "Kevin", age = 18)
         //setContentView(binding.root) //Todo 此时需要调用该方法
 
