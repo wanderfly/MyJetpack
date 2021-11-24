@@ -1,6 +1,5 @@
 package com.kevin.myjetpack
 
-import android.accounts.AccountManager.get
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -8,8 +7,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.annotation.IdRes
-import androidx.annotation.RequiresApi
-import androidx.compose.ui.text.capitalize
 import com.kevin.coroutine.CoroutineActivity
 import com.kevin.databinding.ADataBindingActivity
 import com.kevin.databinding.BDataFragActivity
@@ -20,7 +17,6 @@ import com.kevin.jetpack.lifecycle.compose.BLifecycleService
 import com.kevin.viewmodel.AViewModelActivity
 import com.kevin.viewmodel.BViewModelLiveDataActivity
 import java.io.File
-import javax.security.auth.login.LoginException
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     companion object {
@@ -104,8 +100,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.btn_lifecycle_test -> toActivity(ALifecycleActivity::class.java)
-            R.id.btn_lifecycle_service -> toService(BLifecycleService::class.java)
+            //R.id.btn_lifecycle_test -> toActivity(ALifecycleActivity::class.java)
+            //R.id.btn_lifecycle_service -> toService(BLifecycleService::class.java)
+            R.id.btn_lifecycle_test -> startThread()
+            R.id.btn_lifecycle_service -> releaseThread()
             R.id.btn_aviewmodel -> toActivity(AViewModelActivity::class.java)
             R.id.btn_b_view_model_live_data -> toActivity(BViewModelLiveDataActivity::class.java)
             R.id.btn_b_data_binding -> toActivity(ADataBindingActivity::class.java)
@@ -113,6 +111,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_two_way_binding -> toActivity(CTwoWayBindingActivity::class.java)
             R.id.btn_coroutine -> toActivity(CoroutineActivity::class.java)
         }
+    }
+
+    private var thread: TestThread? = null
+    private fun startThread() {
+        thread = TestThread()
+        thread?.start()
+    }
+
+    private fun releaseThread() {
+        thread?.release()
     }
 
     private fun getDiscountWords(goodsName: String, hour: Int): String {
