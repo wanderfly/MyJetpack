@@ -140,13 +140,15 @@ class CoroutineActivity : AppCompatActivity() {
                 //如果其中一个子协程失败，所有其它兄弟协程也会被取消
                 coroutineScope {
                     val job1 = launch {
+                        Log.e(TAG, "onCreate: launch")
                         delay(400)
-                        Log.e(TAG, "onCreate: job1 执行完毕")
+                        Log.e(TAG, "onCreate: job1 执行完毕:" + Thread.currentThread().name)
                     }
 
                     val job2 = async {
+                        Log.e(TAG, "onCreate: async")
                         delay(200)
-                        Log.e(TAG, "onCreate: job2 执行完毕")
+                        Log.e(TAG, "onCreate: job2 执行完毕:" + Thread.currentThread().name)
                         //Todo 测试其中一个协程失败(页面会闪退)
                         //throw IllegalArgumentException()
                     }
@@ -158,11 +160,13 @@ class CoroutineActivity : AppCompatActivity() {
                 //如果其中一个子协程失败，不会影响其它兄弟协程
                 supervisorScope {
                     val job1 = launch {
+                        Log.e(TAG, "onCreate: launch")
                         delay(400)
                         Log.e(TAG, "onCreate: job1 执行完毕")
                     }
 
                     val job2 = async {
+                        Log.e(TAG, "onCreate: async")
                         delay(200)
                         Log.e(TAG, "onCreate: job2 执行完毕")
                         //Todo 测试其中一个协程失败(页面不会闪退)

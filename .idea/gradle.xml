@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/coroutine" />
             <option value="$PROJECT_DIR$/databinding" />
             <option value="$PROJECT_DIR$/lifecycle" />
+            <option value="$PROJECT_DIR$/retrofit" />
             <option value="$PROJECT_DIR$/viewmodel" />
           </set>
         </option>

@@ -14,6 +14,7 @@ import com.kevin.databinding.CTwoWayBindingActivity
 import com.kevin.databinding.User
 import com.kevin.jetpack.lifecycle.compose.ALifecycleActivity
 import com.kevin.jetpack.lifecycle.compose.BLifecycleService
+import com.kevin.retrofit.RetrofitActivity
 import com.kevin.viewmodel.AViewModelActivity
 import com.kevin.viewmodel.BViewModelLiveDataActivity
 import java.io.File
@@ -39,7 +40,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_b_data_binding,
             R.id.btn_frag_data_binding,
             R.id.btn_two_way_binding,
-            R.id.btn_coroutine
+            R.id.btn_coroutine,
+            R.id.btn_retrofit
         )
 
         val user = User("Tom", 25, false).apply {
@@ -100,16 +102,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            //R.id.btn_lifecycle_test -> toActivity(ALifecycleActivity::class.java)
-            //R.id.btn_lifecycle_service -> toService(BLifecycleService::class.java)
-            R.id.btn_lifecycle_test -> startThread()
-            R.id.btn_lifecycle_service -> releaseThread()
+            R.id.btn_lifecycle_test -> toActivity(ALifecycleActivity::class.java)
+            R.id.btn_lifecycle_service -> toService(BLifecycleService::class.java)
+            //R.id.btn_lifecycle_test -> startThread()
+            //R.id.btn_lifecycle_service -> releaseThread()
             R.id.btn_aviewmodel -> toActivity(AViewModelActivity::class.java)
             R.id.btn_b_view_model_live_data -> toActivity(BViewModelLiveDataActivity::class.java)
             R.id.btn_b_data_binding -> toActivity(ADataBindingActivity::class.java)
             R.id.btn_frag_data_binding -> toActivity(BDataFragActivity::class.java)
             R.id.btn_two_way_binding -> toActivity(CTwoWayBindingActivity::class.java)
             R.id.btn_coroutine -> toActivity(CoroutineActivity::class.java)
+            R.id.btn_retrofit -> toActivity(RetrofitActivity::class.java)
         }
     }
 
