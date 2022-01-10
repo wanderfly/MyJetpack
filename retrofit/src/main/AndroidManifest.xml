@@ -7,5 +7,4 @@
             android:name=".RetrofitActivity"
             android:exported="false" />
     </application>
-
 </manifest>
