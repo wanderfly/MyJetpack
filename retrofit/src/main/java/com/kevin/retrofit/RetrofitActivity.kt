@@ -2,12 +2,15 @@ package com.kevin.retrofit
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.kevin.retrofit.databinding.ActivityRetrofitBinding
 import com.kevin.retrofit.sample1.ApiInterface
-import okhttp3.OkHttpClient
+import com.kevin.retrofit.sample2.SampleBuilder
+import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 class RetrofitActivity : AppCompatActivity() {
@@ -45,5 +48,42 @@ class RetrofitActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_retrofit)
         setContentView(bingDing.root)
+        bingDing.btnGet.run {
+            setOnClickListener { SampleBuilder().getAsync() }
+            //setOnClickListener { SampleBuilder().getSync() }
+
+            /*setOnClickListener {
+
+                //OkHttpClientUtil.okHttpPostFormMobile(
+                //    OkHttpClientUtil.mobile_url,
+                //    "13168710033",
+                //    "112233",
+                //    MyCallBack()
+                //)
+
+                OkHttpClientUtil.okHttpGet(OkHttpClientUtil.image_code_url, MyCallBack())
+            }*/
+        }
+
+    }
+
+    private class MyCallBack : Callback {
+        override fun onFailure(call: Call, e: IOException) {
+            Log.e(TAG, "onFailure: ")
+        }
+
+        override fun onResponse(call: Call, response: Response) {
+            val body: ResponseBody? = response.body
+            Log.e(TAG, "onResponse: $body")
+            body?.let {
+                val value = String(body.bytes())
+                Log.e(TAG, "onResponse: $value")
+            }
+
+        }
+
+        companion object {
+            private const val TAG = "MyCallBack"
+        }
     }
 }
