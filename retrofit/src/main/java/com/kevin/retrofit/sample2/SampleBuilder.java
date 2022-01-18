@@ -71,4 +71,23 @@ public class SampleBuilder {
             }
         }).start();
     }
+
+    public void getImageCode() {
+        Call<BaseResponse<ImageCode>> callImageCode = blogService.getImageCode();
+        callImageCode.enqueue(new Callback<BaseResponse<ImageCode>>() {
+            @Override
+            public void onResponse(@NonNull Call<BaseResponse<ImageCode>> call, @NonNull Response<BaseResponse<ImageCode>> response) {
+                BaseResponse<ImageCode> baseResponse = response.body();
+                if (baseResponse != null)
+                    Log.e(TAG, "onResponse: " + baseResponse.toString());
+                else
+                    Log.e(TAG, "onResponse: null");
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<BaseResponse<ImageCode>> call, @NonNull Throwable t) {
+                Log.e(TAG, "onFailure: " + t.toString());
+            }
+        });
+    }
 }

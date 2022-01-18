@@ -4,7 +4,6 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 /**
  * @author Kevin  2022/1/10
@@ -19,4 +18,9 @@ public interface BlogService {
 
     @GET(value = "auth/oauth/code/captcha/{id}")
     Call<ResponseBody> getBlog2(@Path("id") int id);
+
+    @GET("auth/oauth/code/captcha")
+    Call<BaseResponse<ImageCode>> getImageCode();
+
+    Call<BaseResponse<Test>> getName();
 }

@@ -49,7 +49,7 @@ class RetrofitActivity : AppCompatActivity() {
         //setContentView(R.layout.activity_retrofit)
         setContentView(bingDing.root)
         bingDing.btnGet.run {
-            setOnClickListener { SampleBuilder().getAsync() }
+            //setOnClickListener { SampleBuilder().getAsync() }
             //setOnClickListener { SampleBuilder().getSync() }
 
             /*setOnClickListener {
@@ -63,6 +63,8 @@ class RetrofitActivity : AppCompatActivity() {
 
                 OkHttpClientUtil.okHttpGet(OkHttpClientUtil.image_code_url, MyCallBack())
             }*/
+
+            setOnClickListener { SampleBuilder().getImageCode() }
         }
 
     }
