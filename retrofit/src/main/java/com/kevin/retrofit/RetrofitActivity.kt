@@ -6,6 +6,7 @@ import android.util.Log
 import com.kevin.retrofit.databinding.ActivityRetrofitBinding
 import com.kevin.retrofit.sample1.ApiInterface
 import com.kevin.retrofit.sample2.SampleBuilder
+import com.kevin.retrofit.sample3.Sample3Builder
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -64,7 +65,8 @@ class RetrofitActivity : AppCompatActivity() {
                 OkHttpClientUtil.okHttpGet(OkHttpClientUtil.image_code_url, MyCallBack())
             }*/
 
-            setOnClickListener { SampleBuilder().getImageCode() }
+            //setOnClickListener { SampleBuilder().getImageCode() }
+            setOnClickListener { Sample3Builder.getImageCode() }
         }
 
     }

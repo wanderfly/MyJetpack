@@ -21,6 +21,4 @@ public interface BlogService {
 
     @GET("auth/oauth/code/captcha")
     Call<BaseResponse<ImageCode>> getImageCode();
-
-    Call<BaseResponse<Test>> getName();
 }
