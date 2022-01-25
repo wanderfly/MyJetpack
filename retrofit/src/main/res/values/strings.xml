@@ -1,3 +1,4 @@
 <resources>
     <string name="getImageCode">getImageCode</string>
+    <string name="accountLogin">accountLogin</string>
 </resources>

@@ -41,7 +41,7 @@ class RetrofitActivity : AppCompatActivity() {
         return builder.build()
     }
 
-    val bingDing by lazy {
+    private val bingDing by lazy {
         ActivityRetrofitBinding.inflate(layoutInflater)
     }
 
@@ -66,8 +66,11 @@ class RetrofitActivity : AppCompatActivity() {
             }*/
 
             //setOnClickListener { SampleBuilder().getImageCode() }
-            setOnClickListener { Sample3Builder.getImageCode() }
+            //setOnClickListener { Sample3Builder.getImageCode() }
+            setOnClickListener { Sample3Builder.getImageCode2() }
         }
+
+        bingDing.btnAccountLogin.setOnClickListener { Sample3Builder.accountLogin() }
 
     }
 
