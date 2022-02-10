@@ -11,8 +11,32 @@ open class FxResponse<T>(
     open val data: T? = null,
     open val error: Throwable? = null
 ) {
+    private var statusCode: Int = FxRepCode.EMPTY
+
     fun isOK(): Boolean {
         return Objects.equals(code, CODE_SUCCESS) && Objects.equals(msg, MSG_SUCCESS)
+    }
+
+    fun setStatusCode(@FxRepCode statusCode: Int): FxResponse<T> {
+        this@FxResponse.statusCode = statusCode
+        return this
+    }
+
+    @FxRepCode
+    fun getStatusCode(): Int {
+        if (isOK())
+            return FxRepCode.SUCCESS
+        return statusCode
+    }
+
+    fun getStatusStr(): String {
+        when (getStatusCode()) {
+            FxRepCode.SUCCESS -> return Str_SUCCESS
+            FxRepCode.FAILED -> return Str_FAILED
+            FxRepCode.ERROR -> return Str_ERROR
+            FxRepCode.EMPTY -> return Str_EMPTY
+        }
+        return Str_EMPTY
     }
 
     override fun toString(): String {
@@ -25,10 +49,34 @@ open class FxResponse<T>(
     }
 }
 
+// Kotlin 中使用该方式的注解时，传入非该指定的类型值时，编译器不会红色提示
+// 不合乎常理，所以改用java方式的整形类型注解
+
+/*@IntDef(
+    FxRepCode.SUCCESS,
+    FxRepCode.FAILED,
+    FxRepCode.ERROR,
+    FxRepCode.EMPTY
+)
+@Retention(AnnotationRetention.SOURCE)
+annotation class FxRepCode {
+    companion object {
+        const val SUCCESS = 0
+        const val FAILED = 1
+        const val ERROR = 2
+        const val EMPTY = 3
+    }
+}*/
+
+private const val Str_SUCCESS = "Success"
+private const val Str_FAILED = "Failed"
+private const val Str_ERROR = "Error"
+private const val Str_EMPTY = "Empty"
+
 /**
  * 服务器 --> 未返回数据
  **/
-class FxEmptyResponse<T> : FxResponse<T>()
+open class FxEmptyResponse<T> : FxResponse<T>()
 
 /**
  * 服务器 --> 请求成功状态码

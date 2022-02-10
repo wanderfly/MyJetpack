@@ -1,10 +1,8 @@
 package com.kevin.retrofit.sample3
 
-import android.util.Base64
 import android.util.Log
 import com.kevin.retrofit.sample3.bean.*
 import com.kevin.retrofit.sample3.bean.response.AccountLogin
-import com.kevin.retrofit.sample3.bean.response.Base64Code
 import kotlinx.coroutines.*
 
 /**
@@ -53,7 +51,7 @@ object Sample3Builder {
         CoroutineScope(Dispatchers.IO).launch {
             var loginResult: FxResponse<AccountLogin>? = null
             val deferred = async {
-                loginResult = executeHttp {
+                loginResult = executeHttpOld {
                     netApi.loginAccount(userName = "xzhang", pwd = "123456", tenantCode = "10001")
                 }
             }
