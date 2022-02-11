@@ -40,7 +40,7 @@ open class FxResponse<T>(
     }
 
     override fun toString(): String {
-        return "isOk:${isOK()} code:$code ,msg:$msg ,data:${data.toString()} ,error:${error.toString()}"
+        return "statusStr:${getStatusStr()} code:$code ,msg:$msg ,data:${data.toString()} ,error:${error.toString()}"
     }
 
     companion object {

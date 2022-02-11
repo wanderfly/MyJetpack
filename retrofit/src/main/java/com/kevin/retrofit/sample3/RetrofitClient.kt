@@ -54,15 +54,14 @@ suspend fun <T> executeHttp(block: suspend () -> FxResponse<T>): FxResponse<T> {
         block.invoke()
     }.onSuccess { result ->
         return if (result.isOK())
-        //result.setStatusCode(5)
             result.setStatusCode(FxRepCode.SUCCESS)
         else
             result.setStatusCode(FxRepCode.FAILED)
     }.onFailure { e ->
-        return FxErrorResponse<T>(e).setStatusCode(FxRepCode.ERROR)
+        return FxResponse<T>(error = e).setStatusCode(FxRepCode.ERROR)
     }
 
-    return FxEmptyResponse<T>().setStatusCode(FxRepCode.EMPTY)
+    return FxResponse<T>().setStatusCode(FxRepCode.EMPTY)
 }
 
 

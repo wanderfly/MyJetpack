@@ -51,7 +51,7 @@ object Sample3Builder {
         CoroutineScope(Dispatchers.IO).launch {
             var loginResult: FxResponse<AccountLogin>? = null
             val deferred = async {
-                loginResult = executeHttpOld {
+                loginResult = executeHttp {
                     netApi.loginAccount(userName = "xzhang", pwd = "123456", tenantCode = "10001")
                 }
             }

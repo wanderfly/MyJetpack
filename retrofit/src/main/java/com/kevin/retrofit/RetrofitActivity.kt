@@ -3,10 +3,11 @@ package com.kevin.retrofit
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import com.kevin.retrofit.databinding.ActivityRetrofitBinding
 import com.kevin.retrofit.sample1.ApiInterface
-import com.kevin.retrofit.sample2.SampleBuilder
 import com.kevin.retrofit.sample3.Sample3Builder
+import com.kevin.retrofit.sample3.vm.AccountLoginModel
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -45,10 +46,15 @@ class RetrofitActivity : AppCompatActivity() {
         ActivityRetrofitBinding.inflate(layoutInflater)
     }
 
+    private val resultModel by viewModels<AccountLoginModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_retrofit)
         setContentView(bingDing.root)
+        resultModel.getResult().observe(this) { newValue ->
+            bingDing.tvResult.text = newValue
+        }
         bingDing.btnGet.run {
             //setOnClickListener { SampleBuilder().getAsync() }
             //setOnClickListener { SampleBuilder().getSync() }
@@ -70,8 +76,8 @@ class RetrofitActivity : AppCompatActivity() {
             setOnClickListener { Sample3Builder.getImageCode2() }
         }
 
-        bingDing.btnAccountLogin.setOnClickListener { Sample3Builder.accountLogin() }
-
+        //bingDing.btnAccountLogin.setOnClickListener { Sample3Builder.accountLogin() }
+        bingDing.btnAccountLogin.setOnClickListener { resultModel.login() }
     }
 
     private class MyCallBack : Callback {

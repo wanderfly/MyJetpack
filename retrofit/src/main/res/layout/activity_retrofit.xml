@@ -19,4 +19,18 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:text="@string/accountLogin" />
+
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@color/cardview_dark_background"
+        android:gravity="center"
+        android:minHeight="50dp"
+        android:text="@android:string/no"
+        android:textColor="#FFFFFFFF"
+        android:textSize="20sp" />
+
+
 </LinearLayout>
