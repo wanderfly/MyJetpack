@@ -7,7 +7,7 @@ import androidx.activity.viewModels
 import com.kevin.retrofit.databinding.ActivityRetrofitBinding
 import com.kevin.retrofit.sample1.ApiInterface
 import com.kevin.retrofit.sample3.Sample3Builder
-import com.kevin.retrofit.sample3.vm.AccountLoginModel
+import com.kevin.retrofit.sample3.vm.VMAccountLogin
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -46,14 +46,16 @@ class RetrofitActivity : AppCompatActivity() {
         ActivityRetrofitBinding.inflate(layoutInflater)
     }
 
-    private val resultModel by viewModels<AccountLoginModel>()
+    private val resultModel by viewModels<VMAccountLogin>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_retrofit)
         setContentView(bingDing.root)
+        lifecycle.addObserver(resultModel)
         resultModel.getResult().observe(this) { newValue ->
-            bingDing.tvResult.text = newValue
+            bingDing.btnAccountLogin.isEnabled = newValue.btnLoginEnable
+            bingDing.tvResult.text = newValue.result
         }
         bingDing.btnGet.run {
             //setOnClickListener { SampleBuilder().getAsync() }
@@ -78,6 +80,11 @@ class RetrofitActivity : AppCompatActivity() {
 
         //bingDing.btnAccountLogin.setOnClickListener { Sample3Builder.accountLogin() }
         bingDing.btnAccountLogin.setOnClickListener { resultModel.login() }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        lifecycle.removeObserver(resultModel)
     }
 
     private class MyCallBack : Callback {
