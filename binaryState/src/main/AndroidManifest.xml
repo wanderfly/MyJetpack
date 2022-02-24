@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.kevin.binarystate">
+
+    <application>
+        <activity
+            android:name=".BinaryStateManagerActivity"
+            android:exported="false" />
+    </application>
+
+</manifest>

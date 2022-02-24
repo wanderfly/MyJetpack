@@ -73,5 +73,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:text="retrofit" />
+
+        <Button
+            android:id="@+id/btn_binary_state_manager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="binary state manager" />
     </LinearLayout>
 </ScrollView>

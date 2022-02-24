@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.annotation.IdRes
+import com.kevin.binarystate.BinaryStateManagerActivity
 import com.kevin.coroutine.CoroutineActivity
 import com.kevin.databinding.ADataBindingActivity
 import com.kevin.databinding.BDataFragActivity
@@ -41,7 +42,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_frag_data_binding,
             R.id.btn_two_way_binding,
             R.id.btn_coroutine,
-            R.id.btn_retrofit
+            R.id.btn_retrofit,
+            R.id.btn_binary_state_manager
         )
 
         val user = User("Tom", 25, false).apply {
@@ -113,6 +115,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_two_way_binding -> toActivity(CTwoWayBindingActivity::class.java)
             R.id.btn_coroutine -> toActivity(CoroutineActivity::class.java)
             R.id.btn_retrofit -> toActivity(RetrofitActivity::class.java)
+            R.id.btn_binary_state_manager -> toActivity(BinaryStateManagerActivity::class.java)
         }
     }
 
