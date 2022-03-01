@@ -15,6 +15,7 @@ import com.kevin.databinding.CTwoWayBindingActivity
 import com.kevin.databinding.User
 import com.kevin.jetpack.lifecycle.compose.ALifecycleActivity
 import com.kevin.jetpack.lifecycle.compose.BLifecycleService
+import com.kevin.nativelib.NativeLibActivity
 import com.kevin.retrofit.RetrofitActivity
 import com.kevin.viewmodel.AViewModelActivity
 import com.kevin.viewmodel.BViewModelLiveDataActivity
@@ -43,7 +44,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_two_way_binding,
             R.id.btn_coroutine,
             R.id.btn_retrofit,
-            R.id.btn_binary_state_manager
+            R.id.btn_binary_state_manager,
+            R.id.btn_native,
         )
 
         val user = User("Tom", 25, false).apply {
@@ -116,6 +118,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_coroutine -> toActivity(CoroutineActivity::class.java)
             R.id.btn_retrofit -> toActivity(RetrofitActivity::class.java)
             R.id.btn_binary_state_manager -> toActivity(BinaryStateManagerActivity::class.java)
+            R.id.btn_native -> toActivity(NativeLibActivity::class.java)
         }
     }
 
