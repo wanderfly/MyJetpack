@@ -80,11 +80,19 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:text="binary state manager" />
+
         <Button
             android:id="@+id/btn_native"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:text="CMake Native" />
+
+        <ImageView
+            android:id="@+id/iv_webp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/fx_present_secondary_water_supply_simple"
+            />
     </LinearLayout>
 </ScrollView>
